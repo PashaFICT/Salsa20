@@ -105,41 +105,6 @@ namespace Salsa20
             }
             return list;
         }
-        public List<string> UintToStr(List<uint> list)
-        {
-            string str;
-            List<string> list_str = new List<string>();
-            foreach(uint i in list)
-            {
-                str = i.ToString("X");
-                if (str.Length < 8)
-                {
-                    int count = 8 - str.Length;
-                    for (int p = 0; p< count; p++)
-                    {
-                        str = "0" + str;
-                    }
-                }
-                    str = "0x" + str;
-                list_str.Add(str);
-            }
-            return list_str;
-        }
-        public string UintToStr(uint str)
-        {
-               string res = str.ToString("X");
-                if (res.Length < 8)
-                {
-                    int count = 8 - res.Length;
-                    for (int p = 0; p < count; p++)
-                    {
-                        res = "0" + res;
-                    }
-                }
-                res = "0x" + res;
-
-            return res;
-        }
         private uint RotateLeft(uint value, int offset)
         {
             return (value << offset) | (value >> (32 - offset));
