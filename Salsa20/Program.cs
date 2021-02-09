@@ -25,47 +25,48 @@ namespace Salsa20
             List<uint> list9 = new List<uint> { 0x00000001, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000, 0x00000000 };
             List<uint> list10 = new List<uint> { 211, 159, 13, 115, 76, 55, 82, 183, 3, 117, 222, 37, 191, 187, 234, 136, 49, 237, 179, 48, 1, 106, 178, 219, 175, 199, 166, 48, 86, 16, 179, 207, 31, 240, 32, 63, 15, 83, 93, 161, 116, 147, 48, 113, 238, 55, 204, 36, 79, 201, 235, 79, 3, 81, 156, 47, 203, 26, 244, 243, 88, 118, 104, 54 };
 
-            Console.WriteLine("QuoterRound");
-            foreach (string str in conversion.UintToStr(salsa.QuarterRound(list5)))
-            {
-                Console.Write(str + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("RowRound");
-            for (int i = 0; i< conversion.UintToStr(salsa.RowRound(list8)).Count;i++)
-            {
-                if (i % 4 == 0 && i != 0) Console.WriteLine();
-                Console.Write(conversion.UintToStr(salsa.RowRound(list8))[i] + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("ColumnRound");
-            for (int i = 0; i < conversion.UintToStr(salsa.ColumnRound(list8)).Count; i++)
-            {
-                if (i % 4 == 0 && i != 0) Console.WriteLine();
-                Console.Write(conversion.UintToStr(salsa.ColumnRound(list8))[i] + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("DoubleRound");
-            for (int i = 0; i < conversion.UintToStr(salsa.DoubleRound(list8)).Count; i++)
-            {
-                if (i % 4 == 0 && i != 0) Console.WriteLine();
-                Console.Write(conversion.UintToStr(salsa.DoubleRound(list8))[i] + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("Littleendian for 86, 75, 30, 9");
-            Console.WriteLine(conversion.UintToStr(salsa.Littleendian(86, 75, 30, 9)));
-            Console.WriteLine("_Littleendian for 0x091e4b56");
-            foreach (uint str in salsa._Littleendian(0x091e4b56))
-            {
-                Console.Write(str.ToString() + " ");
-            }
-            Console.WriteLine();
-            Console.WriteLine("QuoterRound");
-            foreach (string str in conversion.UintToStr(chacha.QuarterRound(list0)))
-            {
-                Console.Write(str + " ");
-            }
-            Console.WriteLine();
+             Console.WriteLine("QuoterRound");
+             foreach (string str in conversion.UintToStr(salsa.QuarterRound(list5)))
+             {
+                 Console.Write(str + " ");
+             }
+             Console.WriteLine();
+             Console.WriteLine("RowRound");
+             for (int i = 0; i< conversion.UintToStr(salsa.RowRound(list8)).Count;i++)
+             {
+                 if (i % 4 == 0 && i != 0) Console.WriteLine();
+                 Console.Write(conversion.UintToStr(salsa.RowRound(list8))[i] + " ");
+             }
+             Console.WriteLine();
+             Console.WriteLine("ColumnRound");
+             for (int i = 0; i < conversion.UintToStr(salsa.ColumnRound(list8)).Count; i++)
+             {
+                 if (i % 4 == 0 && i != 0) Console.WriteLine();
+                 Console.Write(conversion.UintToStr(salsa.ColumnRound(list8))[i] + " ");
+             }
+             Console.WriteLine();
+             Console.WriteLine("DoubleRound");
+             for (int i = 0; i < conversion.UintToStr(salsa.DoubleRound(list8)).Count; i++)
+             {
+                 if (i % 4 == 0 && i != 0) Console.WriteLine();
+                 Console.Write(conversion.UintToStr(salsa.DoubleRound(list8))[i] + " ");
+             }
+             Console.WriteLine();
+             Console.WriteLine("Littleendian for 86, 75, 30, 9");
+             Console.WriteLine(conversion.UintToStr(salsa.Littleendian(86, 75, 30, 9)));
+             Console.WriteLine("_Littleendian for 0x091e4b56");
+             foreach (uint str in salsa.Backwards_Littleendian(0x091e4b56))
+             {
+                 Console.Write(str.ToString() + " ");
+             }
+             Console.WriteLine();
+             Console.WriteLine("QuoterRound");
+             foreach (string str in conversion.UintToStr(chacha.QuarterRound(list0)))
+             {
+                 Console.Write(str + " ");
+             }
+             Console.WriteLine();
+            //Console.WriteLine(chacha.RotateLeft(0x59876543, 5).ToString("X"));
             Console.Read();
         }
     }

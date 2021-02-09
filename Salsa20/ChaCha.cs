@@ -8,6 +8,7 @@ namespace Salsa20
 {
     public class ChaCha
     {
+        Rotate rotate = new Rotate();
         public List<uint> QuarterRound(List<uint> list)
         {
             List<uint> res = new List<uint>();
@@ -15,10 +16,10 @@ namespace Salsa20
             uint b = list[1];
             uint c = list[2];
             uint d = list[3];
-            a += b; d = RotateLeft(d ^ a, 16);
-            c += d; b = RotateLeft(b ^ c, 12);
-            a += b; d = RotateLeft(d ^ a, 8);
-            c += d; b = RotateLeft(b ^ c, 7);
+            a += b; d = rotate.RotateLeft(d ^ a, 16);
+            c += d; b = rotate.RotateLeft(b ^ c, 12);
+            a += b; d = rotate.RotateLeft(d ^ a, 8);
+            c += d; b = rotate.RotateLeft(b ^ c, 7);
             res.Add(a);
             res.Add(b);
             res.Add(c);
@@ -26,11 +27,5 @@ namespace Salsa20
             return res;
 
         }
-        
-        private uint RotateLeft(uint value, int offset)
-        {
-            return (value << offset) | (value >> (32 - offset));
-        }
-
     }
 }

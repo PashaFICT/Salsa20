@@ -8,13 +8,14 @@ namespace Salsa20
 {
     public class Salsa
     {
+        Rotate rotate = new Rotate();
         public List<uint> QuarterRound(List<uint> y)
         {
             List<uint> new_list = new List<uint>();
-            uint z1 = y[1] ^ RotateLeft((y[0] + y[3]), 7);
-            uint z2 = y[2] ^ RotateLeft((z1 + y[0]), 9);
-            uint z3 = y[3] ^ RotateLeft((z2 + z1), 13);
-            uint z0 = y[0] ^ RotateLeft((z3 + z2), 18);
+            uint z1 = y[1] ^ rotate.RotateLeft((y[0] + y[3]), 7);
+            uint z2 = y[2] ^ rotate.RotateLeft((z1 + y[0]), 9);
+            uint z3 = y[3] ^ rotate.RotateLeft((z2 + z1), 13);
+            uint z0 = y[0] ^ rotate.RotateLeft((z3 + z2), 18);
             new_list.Add(z0);
             new_list.Add(z1);
             new_list.Add(z2);
@@ -71,7 +72,7 @@ namespace Salsa20
         {
             return Convert.ToUInt32(b0 + Math.Pow(2, 8) * b1 + Math.Pow(2, 16) * b2 + Math.Pow(2, 24) * b3);
         }
-        public List<uint> _Littleendian(uint b)
+        public List<uint> Backwards_Littleendian(uint b)
         {
             List<uint> list = new List<uint>();
             uint b3 = Convert.ToUInt32(b / Math.Pow(2, 24));
@@ -101,13 +102,10 @@ namespace Salsa20
             }
             for (int p = 0; p<16; p++)
             {
-                list.AddRange(_Littleendian(listZ[p] + listX[p]));
+                list.AddRange(Backwards_Littleendian(listZ[p] + listX[p]));
             }
             return list;
         }
-        private uint RotateLeft(uint value, int offset)
-        {
-            return (value << offset) | (value >> (32 - offset));
-        }
+
     }
 }
